@@ -1,0 +1,17 @@
+---
+- hosts: all
+  sudo: yes
+  tasks:
+    - name: yum update
+      yum:
+        name: '*'
+        state: latest
+        update_cache: yes
+  roles:
+    - common
+
+- hosts: web
+  sudo: yes
+  roles:
+    - nginx
+    - php
