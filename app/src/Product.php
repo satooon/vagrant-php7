@@ -4,7 +4,7 @@
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity @ORM\Table(name="products")
+ * @ORM\Entity @ORM\Table(name="products", options={"comment":"product schema"})
  **/
 class Product
 {
@@ -18,7 +18,7 @@ class Product
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", options={"comment":"name field"})
      **/
     protected $name;
 }
