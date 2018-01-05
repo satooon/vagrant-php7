@@ -1,0 +1,10 @@
+vagrant ansible_connection=local
+
+[vagrant]
+vagrant
+
+[web]
+vagrant
+
+[mysql]
+vagrant

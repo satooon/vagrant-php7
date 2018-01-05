@@ -72,10 +72,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "ansible_local" do |ansible|
     ansible.verbose = "v"
     ansible.playbook = "ansible/provision.yml"
-    ansible.limit = "all"
-    ansible.groups = {
-      "web" => ["vagrant"]
-    }
+    ansible.limit = "all,vagrant"
+    ansible.inventory_path = "ansible/hosts/vagrant"
   end
   config.vm.provision "shell", inline: <<-SHELL
     setenforce 0

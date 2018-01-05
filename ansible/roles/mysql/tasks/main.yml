@@ -1,0 +1,44 @@
+---
+# tasks file for mysql
+- name: yum install
+  yum:
+    name: "{{ item }}"
+    state: present
+    enablerepo: remi
+  with_items:
+    - mariadb
+    - mariadb-server
+    - MySQL-python
+  sudo: yes
+
+- name: service MariaDB started and enabled
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
+  sudo: yes
+
+- name: set root password
+  mysql_user:
+    name: root
+    host: localhost
+    password: "{{ mysql.password }}"
+
+#- name: copy ~/.my.cnf
+#  template:
+#    src: my.cnf.j2
+#    dest: "{{ lookup('env', 'HOME') }}/.my.cnf"
+#    mode: 0600
+
+#- name: create database
+#  mysql_db:
+#    name: "{{ mysql.db.name }}"
+#    state: present
+
+#- name: create user
+#  mysql_user:
+#    name: "{{ mysql.user.name }}"
+#    password: "{{ mysql.user.password }}"
+#    priv: "{{ mysql.db.name }}.*:ALL"
+#    host: localhost
+#    state: presentabled=yes

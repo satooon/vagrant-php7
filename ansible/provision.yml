@@ -15,3 +15,8 @@
   roles:
     - nginx
     - php
+
+- hosts: mysql
+  sudo: yes
+  roles:
+    - mysql
