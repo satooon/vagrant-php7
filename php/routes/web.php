@@ -19,3 +19,4 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('/example', 'ExampleController@index');
+$router->get('/example/entity', 'ExampleController@entity');
