@@ -1,8 +1,11 @@
 server {
     listen 80;
     server_name localhost;
-    root /var/www/html;
+    root /vagrant-data/php/public;
     index index.php index.html index.htm;
+
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
 
     client_max_body_size 64M;
 

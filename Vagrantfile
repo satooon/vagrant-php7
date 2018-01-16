@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "./app", "/var/www/html", mount_options: ["dmode=755,fmode=755"]
+  config.vm.synced_folder ".", "/vagrant-data", mount_options: ["dmode=755,fmode=755"]
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -71,9 +71,9 @@ Vagrant.configure("2") do |config|
   # SHELL
   config.vm.provision "ansible_local" do |ansible|
     ansible.verbose = "v"
-    ansible.playbook = "ansible/provision.yml"
+    ansible.playbook = "/vagrant-data/ansible/provision.yml"
     ansible.limit = "all,vagrant"
-    ansible.inventory_path = "ansible/hosts/vagrant"
+    ansible.inventory_path = "/vagrant-data/ansible/hosts/vagrant"
   end
   config.vm.provision "shell", inline: <<-SHELL
     setenforce 0
